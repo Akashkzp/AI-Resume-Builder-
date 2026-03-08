@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bg-surface {
+    @apply bg-gray-50;
+  }
+}
+
+/* Print Specific Rules */
+@media print {
+  /* Set pure white background, hide everything we don't explicitly show */
+  body {
+    background-color: white !important;
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Hide the navbar globally when printing */
+  nav {
+    display: none !important;
+  }
+
+  /* Any component with class .no-print will be hidden */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Ensure the resume container takes over the whole page cleanly */
+  .print-resume-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Ensure parent wrappers of the resume don't constrain or overflow */
+  .print-page-wrapper {
+    background: white !important;
+    padding: 0 !important;
+    min-height: auto !important;
+  }
+
+  /* Reset margin for @page to let browser handle the edges, or tight margin */
+  @page {
+    size: auto;
+    margin: 15mm; 
+  }
+
+  /* Page break rules */
+  h1, h2, h3 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  .avoid-break-inside {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}
